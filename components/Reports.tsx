@@ -1,9 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Transaction, Product, CashRegisterSession, PaymentMethod } from '../types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { analyzeBusinessData } from '../services/geminiService';
-import { Sparkles, BrainCircuit, Download, FileText, CreditCard, Upload, CheckCircle2 } from 'lucide-react';
-import ReactMarkdown from 'react-markdown';
+import { Download, FileText, CreditCard, Upload } from 'lucide-react';
 import { currency, exportToCSV, exportToPDF } from '../utils';
 
 interface ReportsProps {
@@ -14,8 +12,6 @@ interface ReportsProps {
 }
 
 export const Reports: React.FC<ReportsProps> = ({ transactions, products, cashSessions, onImportTransactions }) => {
-  const [aiAnalysis, setAiAnalysis] = useState<string>('');
-  const [loadingAi, setLoadingAi] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -85,14 +81,6 @@ export const Reports: React.FC<ReportsProps> = ({ transactions, products, cashSe
       .sort((a, b) => b.revenue - a.revenue)
       .slice(0, 5);
 
-  const handleAiAnalysis = async () => {
-    setLoadingAi(true);
-    setAiAnalysis('');
-    const result = await analyzeBusinessData(products, activeTransactions, cashSessions);
-    setAiAnalysis(result);
-    setLoadingAi(false);
-  };
-
   const handleImportClick = () => {
     fileInputRef.current?.click();
   };
@@ -109,7 +97,7 @@ export const Reports: React.FC<ReportsProps> = ({ transactions, products, cashSe
     try {
         if (file.type === 'application/pdf') {
             // Simulation for PDF (Since client-side PDF parsing is heavy/flaky without backend)
-            // We simulate that the AI read the PDF bank statement
+            // We simulate that the system read the PDF bank statement
             const mockPDFTransactions: Transaction[] = [
                 {
                     id: crypto.randomUUID(),
@@ -178,7 +166,7 @@ export const Reports: React.FC<ReportsProps> = ({ transactions, products, cashSe
   return (
     <div className="space-y-8 animate-fade-in pb-10">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <h2 className="text-2xl font-bold text-slate-800">Relatórios & Inteligência</h2>
+        <h2 className="text-2xl font-bold text-slate-800">Relatórios Gerenciais</h2>
         
         <div className="flex flex-wrap gap-2">
              <input 
@@ -210,29 +198,8 @@ export const Reports: React.FC<ReportsProps> = ({ transactions, products, cashSe
                 <FileText size={18} />
                 <span>Baixar PDF</span>
             </button>
-            <button 
-                onClick={handleAiAnalysis}
-                disabled={loadingAi}
-                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg shadow-lg shadow-indigo-500/30 font-bold flex items-center space-x-2 hover:scale-105 transition-transform disabled:opacity-70 disabled:scale-100"
-            >
-                {loadingAi ? <BrainCircuit size={18} className="animate-pulse" /> : <Sparkles size={18} />}
-                <span>{loadingAi ? 'Analisando...' : 'Consultoria IA'}</span>
-            </button>
         </div>
       </div>
-
-      {/* AI Result Section */}
-      {aiAnalysis && (
-        <div className="bg-white rounded-2xl p-8 shadow-xl border border-indigo-100 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
-          <h3 className="text-xl font-bold text-indigo-900 mb-4 flex items-center">
-            <BrainCircuit className="mr-2" /> Análise do Consultor Virtual
-          </h3>
-          <div className="prose prose-indigo max-w-none text-slate-700 text-sm md:text-base">
-             <ReactMarkdown>{aiAnalysis}</ReactMarkdown>
-          </div>
-        </div>
-      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Sales Chart */}

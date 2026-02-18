@@ -55,8 +55,8 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
             <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm mb-6">
               <Store size={24} />
             </div>
-            <h1 className="text-4xl font-bold mb-4">FluxoMaster AI</h1>
-            <p className="text-slate-200 leading-relaxed">Gerencie seu negócio com inteligência. Estoque, Caixa e PDV unificados em uma experiência premium.</p>
+            <h1 className="text-4xl font-bold mb-4">FluxoMaster</h1>
+            <p className="text-slate-200 leading-relaxed">Gerencie seu negócio com eficiência. Estoque, Caixa e PDV unificados em uma experiência premium.</p>
           </div>
 
           <div className="relative z-20 mt-12">
@@ -66,7 +66,7 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
             </div>
             <div className="flex items-center space-x-2 text-sm text-slate-300 mt-4">
                <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">✓</div>
-               <span>Consultoria com Inteligência Artificial</span>
+               <span>Gestão de estoque simplificada</span>
             </div>
           </div>
         </div>

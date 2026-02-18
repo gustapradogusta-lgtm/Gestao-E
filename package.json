@@ -1,5 +1,5 @@
 {
-  "name": "fluxomaster-ai---gestão-empresarial",
+  "name": "fluxomaster---gestão-empresarial",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,10 +13,9 @@
     "react-dom": "^19.2.4",
     "lucide-react": "^0.574.0",
     "recharts": "^3.7.0",
-    "@google/genai": "^1.41.0",
-    "react-markdown": "^10.1.0",
     "jspdf": "2.5.1",
-    "jspdf-autotable": "3.5.29"
+    "jspdf-autotable": "3.5.29",
+    "@google/genai": "^1.41.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

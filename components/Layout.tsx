@@ -68,7 +68,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTa
               <h1 className="font-bold text-lg leading-tight truncate" title={user?.storeName || 'FluxoMaster'}>
                 {user?.storeName || 'FluxoMaster'}
               </h1>
-              <p className="text-[10px] uppercase tracking-widest text-primary font-black">Sistema AI</p>
+              <p className="text-[10px] uppercase tracking-widest text-primary font-black">Sistema Gestão</p>
             </div>
           </div>
           <button onClick={() => setIsMobileMenuOpen(false)} className="md:hidden text-slate-400 hover:text-white">
@@ -103,7 +103,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTa
           />
           <SidebarItem 
             icon={BarChart3} 
-            label="Relatórios & IA" 
+            label="Relatórios" 
             active={activeTab === 'reports'} 
             onClick={() => handleTabClick('reports')} 
           />
